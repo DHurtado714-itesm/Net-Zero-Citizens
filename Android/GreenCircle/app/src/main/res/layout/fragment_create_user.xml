@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?><!--tools:context=".framework.views.fragments.RegisterUserFragment" -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:id="@+id/scrollViewCreateUser"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/firstLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:padding="30dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/icon_leaf" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bienvenido,"
+                android:textColor="@color/blue"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Sergio Garnica"
+                android:textColor="@color/blue"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Te registraste con el correo"
+                android:textColor="@color/green"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvUserEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sergio@gmail.com"
+                android:textColor="@color/green"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/secondLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:paddingTop="12dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="Completa tu registro por favor"
+                android:textColor="@color/gray_900"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/userPhoneTextField"
+                style="?attr/textInputOutlinedDenseStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Número Telefónico *"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/gray_500"
+                app:hintTextColor="@color/blue"
+                android:textColorHint="@color/gray_500"
+                app:boxStrokeColor="@color/blue"
+                android:layout_marginBottom="20dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:maxLength="10"
+                    android:textColor="@color/gray_900"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/userAgeTextFIeld"
+                style="?attr/textInputOutlinedDenseStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Edad *"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/gray_500"
+                app:hintTextColor="@color/blue"
+                android:textColorHint="@color/gray_500"
+                app:boxStrokeColor="@color/blue"
+                android:layout_marginBottom="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/userStateTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
+                    android:id="@+id/userState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Estado *"
+                    android:inputType="none"
+                    android:importantForAccessibility="yes"
+                    android:clickable="true"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/blue"
+                    app:hintTextColor="@color/blue"
+                    android:textColorHint="@color/gray_500"
+                    app:boxStrokeColor="@color/blue"
+                    android:layout_marginBottom="20dp"
+                    android:completionThreshold="1"
+                    android:popupBackground="@color/white"
+                    app:simpleItems="@array/state_options"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/userGenderTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
+                    android:id="@+id/userGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Género *"
+                    android:inputType="none"
+                    android:importantForAccessibility="yes"
+                    android:clickable="true"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/blue"
+                    app:hintTextColor="@color/blue"
+                    android:textColorHint="@color/gray_500"
+                    app:boxStrokeColor="@color/blue"
+                    android:layout_marginBottom="20dp"
+                    android:completionThreshold="1"
+                    android:popupBackground="@color/white"
+                    app:simpleItems="@array/gender_options"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="0dp"
+                android:paddingRight="30dp">
+
+
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/avisoPrivacidad"
+                    style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text=""
+                    android:thumbTint="@color/white"
+                    android:trackTint="@color/green"
+                    app:thumbIcon="@drawable/baseline_check_24"
+                    app:thumbIconTint="@color/white"
+                    app:thumbTint="@color/white"
+                    app:trackTint="@color/gray_500"
+                    android:padding="4dp"
+                    />
+
+                <TextView
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Acepto el"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="0dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/login_register"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="192dp"
+                    android:layout_height="wrap_content"
+                    android:text="aviso de privacidad"
+                    android:textAlignment="textStart"
+                    android:textColorLink="@color/blue"
+                    android:textSize="12sp"
+                    android:paddingLeft="0dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/switchError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Debes aceptar las políticas de privacidad"
+                android:textColor="@color/red"
+                android:textSize="14sp"
+                android:visibility="gone"
+                />
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/thirdLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/submit_create_user"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:text="Aceptar"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:backgroundTint="@color/blue"
+                app:rippleColor="@color/primary_700"
+                app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Small" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

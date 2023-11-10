@@ -2,19 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/main_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/main_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenCircle"
         tools:targetApi="31">
 
         <activity
-            android:name=".framework.views.MainActivity"
+            android:name=".framework.views.activities.SplashscreenActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.GreenCircle.NoActionBar">
@@ -23,7 +30,51 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".framework.views.activities.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.GreenCircle.NoActionBar" />
+
+        <activity
+            android:name=".framework.views.activities.RegisterCompanyActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.GreenCircle.NoActionBar" />
+
+        <activity
+            android:name=".framework.views.activities.RegisterUserActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.GreenCircle.NoActionBar" />
+
+        <activity
+            android:name=".framework.views.activities.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.GreenCircle.NoActionBar" />
+
+        <activity
+            android:name=".framework.views.activities.SurveyActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.GreenCircle.NoActionBar" />
+
+        <activity
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+
+        <activity
+            android:name=".framework.views.activities.TutorialActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.GreenCircle.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${GOOGLE_MAPS_API_KEY}"/>
+
     </application>
-
-
 </manifest>

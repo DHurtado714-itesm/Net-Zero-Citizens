@@ -1,98 +1,156 @@
-import { db } from '../configs/database.config'
 import {
-  DataTypes,
+  BelongsToMany,
+  Column,
+  DataType,
+  ForeignKey,
+  HasMany,
   Model,
-  InferAttributes,
-  InferCreationAttributes,
-  CreationOptional,
-} from 'sequelize'
+  Table,
+} from 'sequelize-typescript'
+import Review from './review.model'
+import CompanyFiles from './companyFiles.model'
+import CompanyProducts from './companyProducts.model'
+import Product from './products.model'
+import User from './users.model'
+import Complaint from './complaint.model'
+import Favourites from './favourite.model'
 
 type StatusEnum = 'approved' | 'pending_approval' | 'rejected'
 
 /**
  * @brief
- * La interfaz con los atributos de la tabla COMPANIES
- */
-export interface Company
-  extends Model<InferAttributes<Company>, InferCreationAttributes<Company>> {
-  companyId: CreationOptional<number>
-  userId: number
-  name: string
-  description: string
-  email: string
-  location: string
-  profilePicture: CreationOptional<string>
-  status: StatusEnum
-  phoneNumber: string
-  webPage: CreationOptional<string>
-  createdAt?: Date
-  updatedAt?: Date
-}
-
-/**
- * @brief
  * El modelo que representa la tabla COMPANIES
  */
-export const CompaniesModel = db.define<Company>('COMPANIES', {
-  companyId: {
-    autoIncrement: true,
-    type: DataTypes.INTEGER,
-    allowNull: false,
+@Table({ tableName: 'COMPANIES' })
+export default class Company extends Model {
+  @Column({
+    type: DataType.UUID,
     primaryKey: true,
-    field: 'COMPANY_ID',
-  },
-  userId: {
-    type: DataTypes.INTEGER,
     allowNull: false,
-    // Uncomment when User model is created
-    // references: {
-    //   model: 'USERS',
-    //   key: 'USER_ID',
-    // },
-    // unique: 'FK_COMPANY_USER',
+    defaultValue: DataType.UUIDV4,
+    field: 'COMPANY_ID',
+  })
+  companyId: string
+
+  @ForeignKey(() => User)
+  @Column({
+    type: DataType.UUID,
+    allowNull: true,
     field: 'USER_ID',
-  },
-  name: {
-    type: DataTypes.STRING(255),
+  })
+  userId: string | null
+
+  @Column({
+    type: DataType.STRING(100),
     allowNull: false,
     field: 'NAME',
-  },
-  description: {
-    type: DataTypes.STRING(500),
+  })
+  name: string
+
+  @Column({
+    type: DataType.STRING(500),
     allowNull: false,
     field: 'DESCRIPTION',
-  },
-  email: {
-    type: DataTypes.STRING(255),
+  })
+  description: string
+
+  @Column({
+    type: DataType.STRING(255),
     allowNull: false,
-    unique: 'EMAIL',
     field: 'EMAIL',
-  },
-  location: {
-    type: DataTypes.STRING(500),
+  })
+  email: string
+
+  @Column({
+    type: DataType.STRING(13),
     allowNull: false,
-    field: 'LOCATION',
-  },
-  profilePicture: {
-    type: DataTypes.STRING(500),
-    allowNull: true,
-    field: 'PROFILE_PICTURE',
-  },
-  status: {
-    type: DataTypes.ENUM('approved', 'pending_approval', 'rejected'),
-    allowNull: false,
-    defaultValue: 'pending_approval',
-    field: 'STATUS',
-  },
-  phoneNumber: {
-    type: DataTypes.STRING(10),
-    allowNull: false,
-    unique: 'PHONE_NUMBER',
     field: 'PHONE_NUMBER',
-  },
-  webPage: {
-    type: DataTypes.STRING(255),
+  })
+  phone: string
+
+  @Column({
+    type: DataType.STRING(255),
     allowNull: true,
     field: 'WEB_PAGE',
-  },
-})
+  })
+  webPage: string | null
+
+  @Column({
+    type: DataType.STRING(255),
+    allowNull: false,
+    field: 'STREET',
+  })
+  street: string
+
+  @Column({
+    type: DataType.STRING(50),
+    allowNull: false,
+    field: 'STREET_NUMBER',
+  })
+  streetNumber: string
+
+  @Column({
+    type: DataType.STRING(50),
+    allowNull: false,
+    field: 'CITY',
+  })
+  city: string
+
+  @Column({
+    type: DataType.STRING(50),
+    allowNull: false,
+    field: 'STATE',
+  })
+  state: string
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    field: 'ZIP_CODE',
+  })
+  zipCode: string
+
+  @Column({
+    type: DataType.DECIMAL(8, 6),
+    allowNull: true,
+    field: 'LATITUDE',
+  })
+  latitude: number | null
+
+  @Column({
+    type: DataType.DECIMAL(9, 6),
+    allowNull: true,
+    field: 'LONGITUDE',
+  })
+  longitude: number | null
+
+  @Column({
+    type: DataType.STRING(255),
+    allowNull: true,
+    field: 'PROFILE_PICTURE',
+  })
+  profilePicture: string | null
+
+  @Column({
+    type: DataType.ENUM('approved', 'pending_approval', 'rejected'),
+    allowNull: false,
+    field: 'STATUS',
+    defaultValue: 'pending_approval',
+  })
+  status: StatusEnum
+
+  @HasMany(() => Review)
+  reviews!: Review[]
+
+  @BelongsToMany(() => Product, { through: () => CompanyProducts })
+  products!: Product[]
+
+  @HasMany(() => CompanyFiles)
+  companyFiles!: CompanyFiles[]
+
+  @HasMany(() => Complaint)
+  complaints: Complaint[]
+
+  @HasMany(() => Favourites)
+  favourites: Favourites[]
+}
